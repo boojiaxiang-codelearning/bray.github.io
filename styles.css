@@ -1,0 +1,100 @@
+:root {
+    --whatsapp-green: #25D366;
+    --waze-blue: #33ccff;
+    --accent-yellow: #f6f5f1;
+}
+
+body, html {
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+    background-color: #111;
+}
+
+/* PHOTO BACKGROUND LAYER */
+#slideshow {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%; z-index: 1;
+}
+.slide {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-size: cover; background-position: center;
+    opacity: 0.45; /* Fade out effect */
+    filter: brightness(1.3) contrast(1.15);
+}
+
+/* BUBBLE WRAP LAYER */
+#bubbleCanvas {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 5; cursor: pointer;
+}
+
+/* TEXT & BUTTONS LAYER */
+.ui-container {
+    position: relative; z-index: 10;
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    color: white; text-align: center;
+    pointer-events: none; /* Allows clicking bubbles through text gaps */
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.hero-content h1 { font-size: 3.5rem; color: var(--accent-yellow); margin: 0; }
+.hero-content p { font-size: 1.2rem; margin: 0; }
+
+.btn-container {
+    display: flex; gap: 15px; pointer-events: auto;
+}
+
+.action-btn {
+    padding: 12px 30px; font-size: 1rem; font-weight: bold;
+    border: none; border-radius: 50px; cursor: pointer;
+    color: white; text-decoration: none;
+    display: flex; align-items: center; gap: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.2s;
+}
+
+.action-btn img {
+    width: 36px; height: 36px;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+/* ZOOM & SHAKE EFFECT */
+.action-btn:hover {
+    transform: scale(1.1);
+    animation: shake 0.3s infinite;
+}
+
+@keyframes shake {
+    0% { transform: scale(1.1) rotate(0deg); }
+    25% { transform: scale(1.1) rotate(1deg); }
+    75% { transform: scale(1.1) rotate(-1deg); }
+    100% { transform: scale(1.1) rotate(0deg); }
+}
+
+.whatsapp { background-color: var(--whatsapp-green); }
+.location { background-color: var(--waze-blue); }
+
+@media (max-width: 480px) {
+    .hero-content h1 { font-size: 2.5rem; }
+    .hero-content p { font-size: 1rem; }
+    .action-btn {
+        padding: 10px 20px;
+        font-size: 0.95rem;
+    }
+    .action-btn img {
+        width: 30px; height: 30px;
+    }
+}
